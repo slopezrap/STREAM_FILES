@@ -1,0 +1,19 @@
+<!-- app.component.html -->
+  <h1>
+    Ejemplo de Websockets con angular
+  </h1>
+  <!------------------------------------------------------------------------------->
+  <h2>Recibir mensajes del back al front:</h2>
+
+  <div *ngFor='let m of message_to_front'>
+     Mensaje back: {{m.message_from_back}}
+  </div>
+   <!------------------------------------------------------------------------------->
+
+  <br />
+  <br />
+    <!------------------------------------------------------------------------------->
+  <label *ngIf="selectedFile">{{selectedFile.name}}</label>
+  <input style="display: none" type="file" (change)="onFileChanged($event)"#fileInput>
+  <button (click)="fileInput.click()">Select File</button>
+  <button *ngIf="selectedFile" (click)="onUploadFile()">Upload</button>

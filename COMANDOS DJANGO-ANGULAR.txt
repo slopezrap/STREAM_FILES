@@ -1,0 +1,91 @@
+--------------------------------------------- INSTALACION DJANGO Y PROYECTO (CMD) ---------------------------------------
+0.- mkdir WEB_AUDITORIA
+
+1.- CREACION ENTORNO VIRTUAL
+	python -m venv env_WEB_AUDITORIA
+
+2.- Activo el entorno virtual
+	\WEB_AUDITORIA\env_WEB_AUDITORIA\Scripts\activate
+	
+3.- ME INSTALO DJANGO Y DJANGO REST
+	pip install Django==2.2.1
+	pip install djangorestframework
+
+--------------------------------------------- INSTALACION ANGULAR (CMD) ---------------------------------------
+1.- Instalar NodeJS
+	Te vas a la pagina y te lo descargar e instalas.
+
+2.- Ver si esta instalado NodeJS
+	Te abres la consola de windows y te vas a C. Alli pones:
+	npm -v
+	y luego pones:
+	node -v
+
+3.- Instalar Angular CLIa
+    npm install -g @angular/cli
+
+4.- Ver si esta instalado AngularCLI
+    ng v
+
+--------------------------------------------- COMANDOS USADOS (CMD) ---------------------------------------
+1.- Me creo un proyecto Django
+	django-admin startproject PROJ_WEB_AUDIT_BACK
+
+2.- Me creo app Django
+	cd BACK\PROJ_WEB_AUDIT_BACK
+	python manage.py startapp APP_USERS
+	mkdir EXTERNAL_AUDIT
+	mkdir /EXTERNAL_AUDIT/APP_ANALISIS_EXPEDIENTES
+	python manage.py startapp APP_ANALISIS_EXPEDIENTES ./EXTERNAL_AUDIT/APP_ANALISIS_EXPEDIENTES
+
+
+3.- Realizo las migraciones, me creo el super usuario y arranco el back.
+    python manage.py migrate
+    python manage.py makemigrations
+    python manage.py createsuperuser
+    python manage.py runserver
+
+4.- Me creo el projecto de angular
+    cd FRONT
+    ng new PROJ-WEB-AUDIT-FRONT --routing
+
+5.- Instalo bootstrap y todas dependencias de bootstrap
+    cd PROJ-WEB-AUDIT-FRONT
+    npm i bootstrap jquery popper.js
+    npm install rxjs
+
+6.- Genero (g) los componentes (c) (Es decir, son las paginas web, y es la parte visual)
+    ng g c components/home
+    ng g c components/hero
+    ng g c components/audit/external-audit
+    ng g c components/audit/external-audit/analisis-expedientes/
+    ng g c components/audit/external-audit/analisis-expedientes/matriz
+    ng g c components/audit/internal-audit
+    ng g c components/navbar
+    ng g c components/user/login
+    ng g c components/user/register
+    ng g c components/user/profile
+    ng g c components/user/logout
+    ng g c components/page404
+        -Rutas:
+        --> Debemos aniadiros los que quieran estar en todas las paginas en: "app.component.html"
+        --> Para dar valor a las rutas debemos aniadirlos en: "app-routing.module.ts"
+
+7.- Genero (g) los servicios (s) (Los servicios es donde esta la logica [metodos] de lo que se hace con datos, dan funcionalidad a los componentes)
+    ng g s services/user/auth/auth/
+    ng g s services/user/login/login
+    ng g s services/user/register/register
+    ng g s services/user/profile/profile
+    ng g s services/user/logout/logout
+    ng g s services/audit/external-audit/analisis-expedientes/analisis-expedientes
+    ng g s services/audit/external-audit/analisis-expedientes/matriz/matriz
+        -Inyeccion de servicios:
+        --> Inyectamos como provider nuestros servicios en: "app.module.ts" importante sobre el "FormsModule"
+        -Trabar con los servicios:
+        --> Damos la logica a los servicios:  "auth.service.ts", "login,service.ts", "logout.service.ts", etc
+
+8.- Arranco el front
+    ng serve --open
+
+9.- Genero (g) los guards (g)
+    ng g g guards/user/auth/auth/
